@@ -1,0 +1,8 @@
+- [ ] Create a database in docker
+- [ ] Script python to initalize db
+  - [ ] scrape info about 5 people
+  - [ ] add them to db using sqlalchemy
+- [ ] Fast api server with endpoint /person/{id}
+  - [ ] get: info about person
+  - [ ] put: updates info for a person
+  - [ ] delete: removes a person
