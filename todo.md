@@ -6,3 +6,4 @@
   - [ ] get: info about person
   - [ ] put: updates info for a person
   - [ ] delete: removes a person
+- [ ] Flask web gui for interacting with db
