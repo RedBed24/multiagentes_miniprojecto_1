@@ -30,6 +30,12 @@ Run the fastapi app with:
 fastapi dev src/main.py
 ```
 
+Run the web server using:
+
+```
+flask --app src.presentation.webui run
+```
+
 To run some tests you can use pytest:
 
 ```
