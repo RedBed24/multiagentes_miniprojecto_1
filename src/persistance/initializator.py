@@ -5,7 +5,7 @@ import logging
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from ..domain.person import Person
+from ..domain.person import DBPerson
 from . import DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER
 from .creator import Base
 
