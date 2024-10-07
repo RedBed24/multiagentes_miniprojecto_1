@@ -1,9 +1,15 @@
+"""Module to create the database if it doesn't exist."""
+
+import logging
+
 import pymysql
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import DeclarativeBase
 
-from . import DB_HOST, DB_PORT, DB_NAME, DB_PASS, DB_USER
+from . import DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER
 
-Base = declarative_base()
+class Base(DeclarativeBase):
+    """Base class for the ORM."""
+    pass
 
 
 # Create the database if it doesn't exist
@@ -12,8 +18,8 @@ def create_database() -> None:
     try:
         with conn.cursor() as cursor:
             cursor.execute(f"CREATE DATABASE IF NOT EXISTS {DB_NAME}")
-        print(f"Database '{DB_NAME}' created successfully.")
+        logging.info("Database %s created successfully.", DB_NAME)
     except Exception as e:
-        print(f"Error creating database: {e}")
+        logging.error("Error while creating the database: %s", e)
     finally:
         conn.close()
