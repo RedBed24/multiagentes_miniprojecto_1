@@ -19,6 +19,15 @@ python -m venv .venv
 
 # activate the virtual environment
 . .venv/bin/activate
+
+# install dependencies
+pip install -r requirements.txt
+```
+
+Run the fastapi app with:
+
+```
+fastapi dev src/main.py
 ```
 
 To run some tests you can use pytest:
