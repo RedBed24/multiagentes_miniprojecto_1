@@ -51,7 +51,7 @@ def get_person_by_id(person_id: str) -> Person:
     return Base.session.query(DBPerson).filter(DBPerson.id == person_id).first().to_person()
 
 
-def update_person(person: Person) -> None:
+def update_db_person(person: Person) -> None:
     """Updates a person."""
     db_person = Base.session.query(DBPerson).filter(DBPerson.id == person.id).first()
     db_person.name = person.name

@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request
+from flask import Flask, redirect, render_template, request, url_for
 from requests import get
 
-from ..domain.person import Person
+from ..domain.person import Person, update_db_person
 from ..domain.scrape.list_scraper import get_top
 from ..domain.scrape.people_scraper import get_born
 from . import API_URL
@@ -34,4 +34,12 @@ def get_person(person_id: str):
 
 @app.post("/<person_id>")
 def update_person(person_id: str):
-    ...
+    person = Person(
+        id=person_id,
+        name=request.form["name"],
+        born=request.form["born"],
+    )
+    update_db_person(person)
+    # Post/Redirect/Get pattern
+    # to avoid resubmission of the form
+    return redirect(url_for("get_person", person_id=person_id))
