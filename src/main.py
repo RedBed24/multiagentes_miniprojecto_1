@@ -7,7 +7,7 @@ from .domain.person import (
     Person,
     get_all_people,
     get_person_by_id,
-    update_person,
+    update_db_person,
     delete_person,
 )
 from .domain.scrape.list_scraper import get_top
@@ -61,7 +61,7 @@ async def get_person(person_id: str) -> dict:
 @app.put("/people/{person_id}")
 async def put_person(person_id: str, person: Person) -> dict:
     assert person.id == person_id
-    update_person(person)
+    update_db_person(person)
     return {"person": person}
 
 

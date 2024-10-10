@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>People</title>
+</head>
+<body>
+<table>
+<tr>
+  <th>Name</th>
+  <th>Born</th>
+</tr>
+{% for person in people %}
+<tr>
+  <td><a href="{{person.id}}">{{ person.name }}</a></td>
+  <td>{{ person.born }}</td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>
