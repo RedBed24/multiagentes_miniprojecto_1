@@ -11,6 +11,8 @@ abstract: |
 
 ### Python
 
+**This is an optional step as everything is dockerized.**
+
 Create a virtual enviroment for installing the dependencies.
 
 ``` bash
@@ -42,7 +44,7 @@ To run some tests you can use pytest:
 python -m pytest
 ```
 
-### Database
+### Docker
 
 You need docker installed, make sure it's running with:
 
@@ -56,16 +58,22 @@ Now you'll need the base mariadb docker image:
 docker pull mariadb
 ```
 
-And then, up the db with:
+Make sure to have the latest images with:
+
+```
+docker compose build
+```
+
+And then, up the services with:
 
 ```
 docker compose up
 ```
-
-We're using docker compose because, we'll have to run some services like filling the database and providing the web server.
 
 If you have a mariadb client installed, you can check the database connection with:
 
 ```
 mariadb -h 127.0.0.1 -P 3306 -u root -pmulti
 ```
+
+You can also test the connection to the API via browser with the url <http://127.0.0.1:8000> and the Flask web page with url <http://127.0.0.1:5000>.

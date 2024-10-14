@@ -1,8 +1,44 @@
 services:
+  wait:
+    image: busybox
+    command: sleep 20
+
+  wait2:
+    image: busybox
+    command: sleep 20
+    depends_on:
+      wait:
+        condition: service_completed_successfully
+
   db:
+    container_name: multi_db
     image: mariadb
     ports:
       - "3306:3306"
     environment:
       MARIADB_ROOT_PASSWORD: multi
 
+  api:
+    container_name: multi_api
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - "8000:8000"
+    depends_on:
+      # should be made with healtcheck
+      # Wait for the db service to be ready before starting the api service
+      wait:
+        condition: service_completed_successfully
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    ports:
+      - "5000:5000"
+    depends_on:
+      # should be made with healtcheck
+      # Wait for the api service to be ready before starting the web service
+      wait2:
+        condition: service_completed_successfully
